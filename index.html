@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <style>
+        #container {
+            display: flex;
+            justify-content:space-around;
+            align-items: center;
+            text-align: center;
+            min-height: 50vh;
+            margin-top: 10vh;
+        }
+        #container_text {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            margin-top: 10vh;
+            min-height: 5vh;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div class="card" style="width: 18rem;">
+            <img src="s.png" class="card-img-top" alt="Gunting">
+            <div id="g" class="card-body">
+              <a id='scissors' class="btn btn-primary">Gunting</a>
+            </div>
+        </div>
+        <div id="k" class="card" style="width: 18rem;">
+            <img src="p.png" class="card-img-top" alt="Kertas">
+            <div class="card-body">
+              <a id='paper' class="btn btn-primary">Kertas</a>
+            </div>
+        </div>
+        <div id="b" class="card" style="width: 18rem;">
+            <img src="r.png" class="card-img-top" alt="Batu">
+            <div class="card-body">
+              <a id='rock' class="btn btn-primary">Batu</a>
+            </div>
+        </div>
+    </div>
+    <div id="container_text">
+        <h1 id='decision'>Result</h1>
+    </div>
+    <script>
+        $("#scissors").on('click', function(){
+            var result = compare('scissors', computerChoice());
+            $("#decision").html(result);
+        });
+
+        $('#rock').on('click', function(){
+            var result = compare('rock', computerChoice());
+            $("#decision").html(result);
+        });
+
+        $('#paper').on('click', function(){
+            var result = compare('paper', computerChoice());
+            $("#decision").html(result);
+        });
+        var compare = function(me, opponent) {
+        if(me === 'rock') {
+            
+            if(opponent === 'rock') {
+                return 'Seri';
+            } else if (opponent === 'paper') {
+                return 'Hahaha, batumu aku gulung dengan kertasku >:)';
+            } else if (opponent === 'scissors') {
+                return 'Yah, guntingku hancur karena batumu :(';
+            }
+            
+        } else if (me === 'paper') {
+            
+            if(opponent === 'paper') {
+                return 'Seri';
+            } else if (opponent === 'rock') {
+                return 'Yah, batuku digulung kertasmu :(';
+            } else if (opponent === 'scissors') {
+                return 'Hahaha, aku gunting kertasmu >:)';
+            }
+        } else if (me === 'scissors') {
+            
+            if(opponent === 'scissors') {
+                return 'Seri';
+            } else if (opponent === 'paper') {
+                return 'Yah, kertasku digunting :(';
+            } else if (opponent === 'rock') {
+                return 'Hahaha, aku hancurkan guntingmu >:)';
+            }
+        } else {
+            return "Apaan sih!"
+        }
+        };
+        var computerChoice = function() {
+            var random = Math.random();
+            if (random < 0.333) {
+            return  'rock';
+            } else if(random < 0.67777) {
+            return 'paper';
+            } else {
+            return 'scissors';
+            } 
+        };
+    </script>
+</body>
+</html>
